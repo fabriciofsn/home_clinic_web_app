@@ -27,7 +27,7 @@ const Header = () => {
   const handleCloseLoginPopup = () => {
     setIsLoginPopupOpen(false);
   };
-
+    
 
   return (
     <header>
@@ -50,12 +50,16 @@ const Header = () => {
             </li>
 
             <li>
-              <a onClick={handleOpenLoginPopup} href="#">Login<LuLogIn/></a>
+              <a onClick={handleOpenLoginPopup}href="#">Login<LuLogIn/></a>
             </li>
           </ul>
            
           <div className="bars"><FaBarsStaggered color='#d9d9d9' size={30} onClick={modal}/></div>
-          {isLoginPopupOpen && <Login />}
+          {isLoginPopupOpen && (
+        <div ref={popupRef}>
+          <Login isOpen={isLoginPopupOpen} onClose={handleCloseLoginPopup} />
+        </div>
+      )}
       </div>
     </header>
   )
