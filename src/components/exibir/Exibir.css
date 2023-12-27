@@ -1,0 +1,56 @@
+.exibir{
+  width: 100%;
+  max-width: 500px;
+  border: 10px solid black;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  position: relative;
+  margin: 80px 0;
+}
+
+.icon{
+  position: absolute;
+  top: -50px;
+  right: 45%;
+}
+
+.title{
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+.title h4{
+  color: black;
+  font-weight: normal;
+}
+.address {
+  text-align: center;
+  border-bottom: 3px solid black;
+}
+
+.address h4{
+  font-weight: normal;
+}
+
+.dados{
+  display: flex;
+  justify-content: space-between;
+  padding: 1%;
+  border-bottom: 3px solid black;
+  margin: 10px 0;
+}
+
+.dados span{
+  font-weight: bold;
+}
+
+.loading{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loading img{
+ width: 400px;
+}
