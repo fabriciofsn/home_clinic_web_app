@@ -24,12 +24,14 @@ const Login = ({isOpen,onClose}) => {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <label>Senha:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button type="button" onClick={handleLogin}>
             Login

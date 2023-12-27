@@ -13,6 +13,8 @@
 .wrapper{
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  /* background-color: #23B14D; */
   justify-content: space-between;
   align-items: center;
 }
@@ -69,7 +71,7 @@
   margin: auto;
 }
 
-.wraper{
+.wrapper{
   width: 100%;
 }
 

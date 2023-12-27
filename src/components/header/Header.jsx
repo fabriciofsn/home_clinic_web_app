@@ -50,7 +50,7 @@ const Header = () => {
             </li>
 
             <li>
-              <a onClick={handleOpenLoginPopup}href="#">Login<LuLogIn/></a>
+              <a onClick={handleOpenLoginPopup}href="#"><LuLogIn/> Login</a>
             </li>
           </ul>
            

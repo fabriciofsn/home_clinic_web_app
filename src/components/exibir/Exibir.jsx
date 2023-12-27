@@ -1,43 +1,45 @@
-import React from 'react'
-import { PiUserFill } from "react-icons/pi";
+import React from 'react';
 import "./Exibir.css";
+import { CiEdit } from "react-icons/ci";
+
 
 const Exibir = (props) => {
   return (
     <div className="wrapper">
-    <div className='exibir'>
-      <div className="icon">
-        <PiUserFill size={50}/>
-      </div>
-      <div className="title">
-        <h4>Paciente</h4>
-      </div>
-      <div className="dados">
-        <span>Nome: {props.nome}</span>
-        <span>CPF: {props.CPF}</span>
-      </div>
-      <div className="dados">
-        <span>Idade: {props.idade}</span>
-        <span>Telefone: {props.telefone}</span>
-      </div>
-      <div className="address">
-        <h4>Endereço</h4>
-      </div>
-      <div className="dados">
-        <span>Estado: {props.estado}</span>
-        <span>Cidade: {props.cidade}</span>
-      </div>
-      <div className="dados">
-        <span>Cep: {props.cep}</span>
-        <span>Bairro: {props.bairro}</span>
-      </div>
-      <div className="dados">
-        <span>Rua: {props.rua}</span>
-        <span>Número: {props.numero}</span>
-      </div>
-    </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Idade</th>
+            <th>Telefone</th>
+            <th>Estado</th>
+            <th>Cidade</th>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Número</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.paciente?.map(paciente => (
+            <tr key={paciente.id}>
+              <td>{paciente.nome}</td>
+              <td>{paciente.CPF}</td>
+              <td>{paciente.idade}</td>
+              <td>{paciente.telefone}</td>
+              <td>{paciente.endereco.estado}</td>
+              <td>{paciente.endereco.cidade}</td>
+              <td>{paciente.endereco.rua}</td>
+              <td>{paciente.endereco.bairro}</td>
+              <td>{paciente.endereco.numero}</td>
+              <td style={{cursor: 'pointer'}}><a href={paciente.id}>{<CiEdit size={30} color='#3498db'/>}</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
 
-export default Exibir
+export default Exibir;

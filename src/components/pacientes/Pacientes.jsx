@@ -5,6 +5,7 @@ import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import prescription from '../../assets/prescription.svg';
 
 const Pacientes = () => {
 
@@ -33,30 +34,18 @@ const Pacientes = () => {
           onChange={(e) => setSearchTerm(e.target.value)} placeholder="Procurar Por Paciente..." />
     </div>
       <div className="wrapper">
-        <div className="slide">
+        {/* <div className="slide"> */}
           {isLoading && <div className='loading'><img src={Heart} /></div> }
-          
-        {filteredData && filteredData.map(data =>{
-          
-          return (
-          
-          <Exibir 
-          nome={data.nome} 
-          CPF={data.CPF} 
-          idade={data.idade} 
-          telefone={data.telefone} 
-          estado={data.endereco.estado}
-          cidade={data.endereco.cidade} 
-          cep={data.endereco.cep} 
-          rua={data.endereco.rua} 
-          numero={data.endereco.numero} 
-          bairro={data.endereco.bairro}
-          />
-          )
-        })}
+          {/* <img src={prescription} alt="" /> */}
+        {filteredData && (
+          <div style={{ display: 'flex' }}>
+            <Exibir paciente={filteredData} />
+          </div>
+        )}
+
         </div>
       </div>
-    </div>
+    // </div>
   )
 }
 
