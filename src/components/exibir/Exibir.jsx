@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Exibir.css";
 import { CiEdit } from "react-icons/ci";
-
+import {Link} from 'react-router-dom'
 
 const Exibir = (props) => {
   return (
@@ -33,7 +33,7 @@ const Exibir = (props) => {
               <td>{paciente.endereco.rua}</td>
               <td>{paciente.endereco.bairro}</td>
               <td>{paciente.endereco.numero}</td>
-              <td style={{cursor: 'pointer'}}><a href={paciente.id}>{<CiEdit size={30} color='#3498db'/>}</a></td>
+              <td style={{cursor: 'pointer'}}><Link to={'/atualizar/paciente/'+paciente.id}>{<CiEdit size={30} color='#3498db'/>}</Link></td>
             </tr>
           ))}
         </tbody>

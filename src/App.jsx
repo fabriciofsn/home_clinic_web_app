@@ -9,6 +9,7 @@ import Cancelar from './components/cancelarConsulta/Cancelar';
 import Consultas from './components/consultas/Consultas';
 import CadastrarPaciente from './components/cadastrarpaciente/CadastrarPaciente';
 import Login from './components/login/Login';
+import AtualizarPaciente from './pages/atualizarpaciente/AtualizarPaciente';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/consultas" element={<Consultas />} />
         <Route path='/cadastrar/paciente' element={<CadastrarPaciente />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/atualizar/paciente/:id" element={<AtualizarPaciente />} />
       </Routes>
         </>
       </Router>
