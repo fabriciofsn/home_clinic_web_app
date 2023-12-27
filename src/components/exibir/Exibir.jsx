@@ -33,7 +33,7 @@ const Exibir = (props) => {
               <td>{paciente.endereco.rua}</td>
               <td>{paciente.endereco.bairro}</td>
               <td>{paciente.endereco.numero}</td>
-              <td style={{cursor: 'pointer'}}><Link to={'/atualizar/paciente/'+paciente.id}>{<CiEdit size={30} color='#3498db'/>}</Link></td>
+              <td style={{cursor: 'pointer'}}><Link to={`/atualizar/paciente/${paciente.id}`}>{<CiEdit size={30} color='#3498db'/>}</Link></td>
             </tr>
           ))}
         </tbody>

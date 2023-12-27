@@ -5,7 +5,6 @@ import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import prescription from '../../assets/prescription.svg';
 
 const Pacientes = () => {
 

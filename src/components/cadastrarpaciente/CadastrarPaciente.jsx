@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import "./CadastrarPaciente.css";
 import axios from 'axios';
-import Spinner from '../spinner/Spinner';
+import Heart from '../../assets/Heart.svg';
 
 const CadastrarPaciente = () => {
   const navigator = useNavigate();
@@ -43,18 +43,18 @@ const CadastrarPaciente = () => {
   };
 
   const handleSubmit = async (e) => {
-    setLoad(true);
     e.preventDefault(); 
-    await axios.post('http://localhost:3000/cadastrar/paciente',formulario).then((res) =>{
-      console.log(res);
-    setLoad(false);  
-      if(res.status == 200){
-        alert('Paciente Cadastrado');
-        navigator('/pacientes');
-      }else{
-        alert("Houve um erro ao tentar cadastrar novo paciente")
-      }
-    })
+    setLoad(true);
+    
+    try{
+      await axios.post('http://localhost:3000/cadastrar/paciente',formulario);
+      alert('Paciente Cadastrado! Você será redirecionado à lista de clientes.')
+      navigator('/pacientes');
+    }catch(e){
+      alert(`Ocorreu um erro ao cadastrar paciente ${e}`);
+    }finally{
+      setLoad(false);
+    }
   };
 
   return (
@@ -63,7 +63,7 @@ const CadastrarPaciente = () => {
         <h1>Cadastrar Paciente</h1>
       </div>
        <form onSubmit={handleSubmit} className="formulario-lindo">
-        {load && <Spinner />}
+        {load && <div style={{display: 'flex',justifyContent: 'center'}}><img style={{maxWidth: '200px'}} src={Heart} /></div>}
       <div className="secao">
         <h2>Informações Básicas</h2>
         <div className="linha">
