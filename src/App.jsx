@@ -10,6 +10,8 @@ import Consultas from './components/consultas/Consultas';
 import CadastrarPaciente from './components/cadastrarpaciente/CadastrarPaciente';
 import Login from './components/login/Login';
 import AtualizarPaciente from './pages/atualizarpaciente/AtualizarPaciente';
+import CadastrarMedico from './pages/cadastrarmedico/CadastrarMedico';
+import AtualizarMedico from './pages/atualizarmedico/AtualizarMedico';
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
         <Route path='/cadastrar/paciente' element={<CadastrarPaciente />} />
         <Route path="/login" element={<Login />} />
         <Route path="/atualizar/paciente/:id" element={<AtualizarPaciente />} />
+        <Route path="/cadastrar/medico" element={<CadastrarMedico />} />
+        <Route path="/atualizar/medico/:id" element={<AtualizarMedico />} />
       </Routes>
         </>
       </Router>
