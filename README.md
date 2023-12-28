@@ -1,8 +1,16 @@
-# React + Vite
+# Clínica Web App - Front End
+Bem-vindo ao repositório do frontend da Clínica Project! Este projeto utiliza React.js para criar a interface de usuário amigável e interativa para uma clínica. O backend é desenvolvido em TypeScript, usando MongoDB como banco de dados e nodemon para facilitar o desenvolvimento.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Configuração Inicial
+Antes de começar, certifique-se de ter o Node.js v18.18.2^ e o npm instalados em sua máquina.
+## Clone este repositório:
+git clone https://github.com/SEU_USUARIO/clinica-frontend.git
+## Instale as dependências:
+npm install <br />
+O aplicativo estará disponível em http://localhost:SUAPORTA.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Conexão com o Backend
+O frontend se conecta a um backend desenvolvido em TypeScript, MongoDB e nodemon. Para configurar e executar o backend, siga as instruções no repositório 
+[Clinica Project Backend.] (https://github.com/fabriciofsn/clinica-project)https://github.com/fabriciofsn/clinica-project <br />
+<br />
+Certifique-se de atualizar o arquivo .env no diretório raiz do frontend com o endereço correto da API.
