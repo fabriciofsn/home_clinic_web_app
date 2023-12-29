@@ -87,7 +87,7 @@ const AgendarConsulta = () => {
             <label>Paciente:</label>
             <select name="paciente" id="paciente" value={formulario.paciente} onChange={handleChange} required>
               {pacientes && pacientes.data.map(paciente =>{
-                return <option value={paciente.id}>{paciente.nome}</option>
+                return <option style={{textTransform: 'capitalize'}} value={paciente.id}>{paciente.nome}</option>
             })}
             </select>
           </div>
@@ -96,7 +96,7 @@ const AgendarConsulta = () => {
             <select name="medico" id="medico" value={formulario.medico} onChange={handleChange} required>
             {medicosFilter && medicosFilter.map(medico =>{
               return(
-                  <option value={medico.id}>{medico.nome}</option>
+                  <option style={{textTransform: 'capitalize'}} value={medico.id}>{medico.nome}</option>
                   )
                 })}
             </select>
@@ -129,7 +129,7 @@ const AgendarConsulta = () => {
             <label>Status Da Consulta:</label>
             <select name="status_da_consulta" value={formulario.status_da_consulta} onChange={handleChange} id="status_da_consulta">
               <option defaultChecked="AGENDADA" value="AGENDADA">AGENDADA</option>
-              <option value="PENDENTE">PENDENTE</option>
+              <option value="CANCELADA">CANCELADA</option>
             </select>
           </div>
           <div className="campo">
