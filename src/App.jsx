@@ -12,6 +12,8 @@ import Login from './components/login/Login';
 import AtualizarPaciente from './pages/atualizarpaciente/AtualizarPaciente';
 import CadastrarMedico from './pages/cadastrarmedico/CadastrarMedico';
 import AtualizarMedico from './pages/atualizarmedico/AtualizarMedico';
+import ConsultasPendentes from './pages/consultaspendentes/ConsultasPendentes';
+import DeletarConsulta from './pages/deletarconsulta/DeletarConsulta';
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
         <Route path="/atualizar/paciente/:id" element={<AtualizarPaciente />} />
         <Route path="/cadastrar/medico" element={<CadastrarMedico />} />
         <Route path="/atualizar/medico/:id" element={<AtualizarMedico />} />
+        <Route path="/consultas/pendentes" element={<ConsultasPendentes />} />
+        <Route path="/deletar/consulta/:id" element={<DeletarConsulta />} />
       </Routes>
         </>
       </Router>

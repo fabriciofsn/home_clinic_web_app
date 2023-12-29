@@ -80,7 +80,8 @@
   align-items: center;
 }
 
-button.cadastrar,.pendentes {
+button.cadastrar,
+.pendentes {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,11 +98,22 @@ button.cadastrar,.pendentes {
   margin: 5px 5px;
 }
 
-button.pendentes{
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loading img {
+  max-width: 200px;
+}
+
+button.pendentes {
   background-color: #7D027D;
 }
 
-button.pendentes:hover{
+button.pendentes:hover {
   background-color: #910b91;
 }
 
@@ -123,14 +135,14 @@ button.pendentes:hover{
   }
 }
 
-.button-wrapper{
+.button-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media(max-width: 640px){
-  .button-wrapper{
+@media(max-width: 640px) {
+  .button-wrapper {
     display: initial;
   }
 }

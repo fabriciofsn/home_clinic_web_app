@@ -122,6 +122,7 @@ const CadastrarMedico= () => {
               <option value="INATIVO">INATIVO</option>
               <option value="FERIAS">FÉRIAS</option>
               <option value="LICENCA">LICENÇA</option>
+              <option value="LICENCA">AFASTADO</option>
             </select>
           </div>
         </div>

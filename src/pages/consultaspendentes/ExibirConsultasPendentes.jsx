@@ -1,10 +1,12 @@
 import React from 'react';
-import "./ExibirConsulta.css";
-import { CiEdit } from "react-icons/ci";
+import "./ExibirConsultasPendentes.css";
 import { Link } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import { FcApproval } from "react-icons/fc";
 
-const ExibirConsultas = (props) => {
-  
+
+const ExibirConsultasPendentes = (props) => {
+
   return (
     <div className="wrapper">
       <table>
@@ -17,7 +19,8 @@ const ExibirConsultas = (props) => {
             <th>Status Do Pagamento</th>
             <th>Método Do Pagamento</th>
             <th>Data</th>
-            <th>Ação</th>
+            <th>Aprovar</th>
+            <th>Deletar</th>
           </tr>
         </thead>
         <tbody>
@@ -30,7 +33,10 @@ const ExibirConsultas = (props) => {
               <td>{consulta.status_do_pagamento}</td>
               <td>{consulta.metodo_do_pagamento}</td>
               <td>{consulta.data}</td>
-              <td style={{cursor: 'pointer'}}><Link to={`/atualizar/consulta/${consulta.id}`}>{<CiEdit size={30} color='#3498db'/>}</Link></td>
+              <td style={{cursor: 'pointer'}}>{<FcApproval size={30} color='#3498db'/>}</td>
+              <td style={{cursor: 'pointer'}}>
+                <Link to={`/deletar/consulta/${consulta.id}`}><MdDelete size={30} color='#830583'/></Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -39,4 +45,4 @@ const ExibirConsultas = (props) => {
   )
 }
 
-export default ExibirConsultas;
+export default ExibirConsultasPendentes;

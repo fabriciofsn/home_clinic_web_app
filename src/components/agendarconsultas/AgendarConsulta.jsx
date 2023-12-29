@@ -17,7 +17,7 @@ const AgendarConsulta = () => {
     data: '',
     valor: '',
     status_do_pagamento: 'CONFIRMADO',
-    status_da_consulta: 'AGENDADA',
+    status_da_consulta: 'CANCELADA',
     metodo_do_pagamento: 'CARTAO_DE_CREDITO',
   });
   
@@ -35,7 +35,7 @@ const AgendarConsulta = () => {
     try{
       await axios.post(`http://localhost:3000/agendar/consulta`,formulario);
       alert('Consulta Agendada!');
-      navigator('/'); 
+      navigator('/consultas'); 
   }catch(e){
     alert(`Ocorreu um erro ao agendar esta consulta ${e}`);
   }finally{
@@ -87,7 +87,7 @@ const AgendarConsulta = () => {
             <label>Paciente:</label>
             <select name="paciente" id="paciente" value={formulario.paciente} onChange={handleChange} required>
               {pacientes && pacientes.data.map(paciente =>{
-                return <option style={{textTransform: 'capitalize'}} value={paciente.id}>{paciente.nome}</option>
+                return <option key={paciente.id} style={{textTransform: 'capitalize'}} value={paciente.id}>{paciente.nome}</option>
             })}
             </select>
           </div>
@@ -96,9 +96,9 @@ const AgendarConsulta = () => {
             <select name="medico" id="medico" value={formulario.medico} onChange={handleChange} required>
             {medicosFilter && medicosFilter.map(medico =>{
               return(
-                  <option style={{textTransform: 'capitalize'}} value={medico.id}>{medico.nome}</option>
+                  <option key={medico.id} style={{textTransform: 'capitalize'}} value={medico.id}>{medico.nome}</option>
                   )
-                })}
+                })} 
             </select>
           </div>
         </div>
@@ -127,9 +127,9 @@ const AgendarConsulta = () => {
         <div className="linha">
           <div className="campo">
             <label>Status Da Consulta:</label>
-            <select name="status_da_consulta" value={formulario.status_da_consulta} onChange={handleChange} id="status_da_consulta">
-              <option defaultChecked="AGENDADA" value="AGENDADA">AGENDADA</option>
-              <option value="CANCELADA">CANCELADA</option>
+            <select disabled name="status_da_consulta" value={formulario.status_da_consulta} onChange={handleChange} id="status_da_consulta">
+              <option defaultChecked="PENDENTE" value="CANCELADA">PENDENTE</option>
+              <option value="AGENDADA">AGENDADA</option>
             </select>
           </div>
           <div className="campo">
