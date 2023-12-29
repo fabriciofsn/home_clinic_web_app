@@ -12,7 +12,7 @@ const Administrativo = () => {
       <img src={medicos} alt="medicos" />
 
       <div className="button">
-        <Link to="/consultas"><button className='consulta'>Agendar Uma Consulta <IoIosArrowForward /></button></Link>
+        <Link to="/agendar/consultas"><button className='consulta'>Agendar Uma Consulta <IoIosArrowForward /></button></Link>
         <Link to="/cancelar"><button className='cancelar'>Cancelar Uma Consulta <MdDoubleArrow /></button></Link>
       </div>
     </div>
