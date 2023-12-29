@@ -28,7 +28,7 @@ const AgendarConsulta = () => {
       [name]: value
     });
   };
-  console.log(formulario)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoad(true);
@@ -82,11 +82,10 @@ const AgendarConsulta = () => {
        <form onSubmit={handleSubmit} className="formulario-lindo">
         {load && <div style={{display:'flex',justifyContent: 'center'}}><img style={{maxWidth: '200px'}} src={Heart} /></div>}
       <div className="secao">
-        <h2>Informações Básicas</h2>
         <div className="linha">
           <div className="campo">
             <label>Paciente:</label>
-            <select name="paciente" id="paciente" value={formulario.paciente} onChange={handleChange}>
+            <select name="paciente" id="paciente" value={formulario.paciente} onChange={handleChange} required>
               {pacientes && pacientes.data.map(paciente =>{
                 return <option value={paciente.id}>{paciente.nome}</option>
             })}
@@ -94,7 +93,7 @@ const AgendarConsulta = () => {
           </div>
           <div className="campo">
             <label>Médico:</label>
-            <select name="medico" id="medico" value={formulario.medico} onChange={handleChange}>
+            <select name="medico" id="medico" value={formulario.medico} onChange={handleChange} required>
             {medicosFilter && medicosFilter.map(medico =>{
               return(
                   <option value={medico.id}>{medico.nome}</option>
@@ -111,6 +110,7 @@ const AgendarConsulta = () => {
               name="valor"
               value={formulario.valor}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="campo">
@@ -120,19 +120,20 @@ const AgendarConsulta = () => {
               name="data"
               value={formulario.data}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
         <div className="linha">
           <div className="campo">
-            <label>Status Da Consulta</label>
+            <label>Status Da Consulta:</label>
             <select name="status_da_consulta" value={formulario.status_da_consulta} onChange={handleChange} id="status_da_consulta">
-              <option value="AGENDADA">AGENDADA</option>
+              <option defaultChecked="AGENDADA" value="AGENDADA">AGENDADA</option>
               <option value="PENDENTE">PENDENTE</option>
             </select>
           </div>
           <div className="campo">
-            <label>Status Do Pagamento</label>
+            <label>Status Do Pagamento:</label>
             <select name="status_do_pagamento" value={formulario.status_do_pagamento} onChange={handleChange} id="status_do_pagamento">
               <option value="CONFIRMADO">CONFIRMADO</option>
               <option value="PENDENTE">PENDENTE</option>
@@ -141,7 +142,7 @@ const AgendarConsulta = () => {
         </div>
         <div className="linha">
           <div className="campo">
-            <label>Método De Pagamento</label>
+            <label>Método De Pagamento:</label>
             <select name="metodo_do_pagamento" value={formulario.metodo_do_pagamento} onChange={handleChange} id="metodo_do_pagamento">
               <option value="CARTAO_DE_CREDITO">CARTÃO DE CRÉDITO</option>
               <option value="CARTAO_DE_DEBITO">CARTÃO DE DÉBITO</option>

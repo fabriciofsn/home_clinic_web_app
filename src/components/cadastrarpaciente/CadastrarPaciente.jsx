@@ -62,7 +62,7 @@ const CadastrarPaciente = () => {
       <div className="titulo">
         <h1>Cadastrar Paciente</h1>
       </div>
-       <form onSubmit={handleSubmit} className="formulario-lindo">
+       <form onSubmit={handleSubmit} className="formulario">
         {load && <div style={{display: 'flex',justifyContent: 'center'}}><img style={{maxWidth: '200px'}} src={Heart} /></div>}
       <div className="secao">
         <h2>Informações Básicas</h2>
