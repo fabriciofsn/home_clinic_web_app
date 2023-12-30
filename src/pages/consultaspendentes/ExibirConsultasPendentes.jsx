@@ -19,7 +19,6 @@ import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
       <AprovarConsulta />
       navigator('/consultas/pendentes');
     }
-
     return (
       <div className="wrapper">
         <table>

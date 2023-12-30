@@ -32,6 +32,9 @@ const Consultas = () => {
   });
 
   const filteredConsultas = filteredData?.filter(consulta => consulta.status_da_consulta == 'AGENDADA');
+  const data = new Date();
+  const filtroPorData = filteredConsultas && filteredConsultas.filter(consulta => new Date(consulta.data) >= data);
+  
 
   return (
     <div className='pacientes'>
@@ -50,12 +53,11 @@ const Consultas = () => {
           {isLoading && <div className='loading'><img src={Heart} /></div> }
         {filteredData && (
           <div style={{ display: 'flex' }}>
-            <ExibirConsultas consultas={filteredConsultas} />
+            <ExibirConsultas consultas={filtroPorData} />
           </div>
         )}
         </div>
       </div>
-    // </div>
   )
 }
 

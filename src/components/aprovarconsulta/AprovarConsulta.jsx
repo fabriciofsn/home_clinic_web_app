@@ -48,7 +48,6 @@ const AprovarConsulta = () => {
   useEffect(() => {
 
     if (formulario.id) {
-      console.log(formulario);
       const updateConsulta = async () => {
         await axios.put(`http://localhost:3000/consulta/${id}`, formulario);
         alert('Consulta Aprovada!');

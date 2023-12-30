@@ -33,7 +33,7 @@ const Header = () => {
     <header>
         <h1>Home Clinic</h1>
       <div className="container">
-          <ul ref={refUl}>
+          <ul ref={refUl} onClick={modal}>
             <li>
               <Link to="/"><RiComputerFill /> Administrativo</Link>
             </li>
