@@ -1,0 +1,31 @@
+.container-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.wrapper-error h1{
+    color: #9e0a9e;
+    font-size: 4em;
+}
+
+
+.wrapper-error p{
+    color: #d9d9d9;
+    font-size: 1.5em;
+}
+
+.wrapper-error{
+    display: block;
+    text-align: center;
+}
+
+@media (max-width: 798px){
+    .wrapper-error h1{
+        font-size: 2em;
+    }
+    .wrapper-error p{
+        font-size: 1em;
+    }
+}

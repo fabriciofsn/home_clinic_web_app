@@ -15,6 +15,7 @@ import AtualizarMedico from './pages/atualizarmedico/AtualizarMedico';
 import ConsultasPendentes from './pages/consultaspendentes/ConsultasPendentes';
 import DeletarConsulta from './pages/deletarconsulta/DeletarConsulta';
 import AprovarConsulta from './components/aprovarconsulta/AprovarConsulta';
+import Error404 from './pages/error/error404';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/consultas/pendentes" element={<ConsultasPendentes />} />
         <Route path="/deletar/consulta/:id" element={<DeletarConsulta />} />
         <Route path="/aprovar/consulta/:id" element={<AprovarConsulta />} />
+        <Route path="*" element={<Error404 />}/>
       </Routes>
         </>
       </Router>
