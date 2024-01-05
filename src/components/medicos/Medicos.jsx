@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./Medicos.css";
-import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import ExibirMedicos from './ExibirMedicos';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Medicos = () => {
 
@@ -29,10 +31,28 @@ const Medicos = () => {
 
         const data = await medicos.json();
         setDados(data);
-
+        toast.success('Médicos Carregados...',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
       } catch (error) {
-        navigator('/');
-        alert(`Você precisa estar autenticado ${error}`);
+        // navigator('/');
+        toast.error('Você precisa estar autenticado!',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
       }finally{
         setLoading(false);
       }
@@ -46,6 +66,7 @@ const Medicos = () => {
 
   return (
     <div className='pacientes'>
+      <ToastContainer />
       <div className="cadastrar">
         <h2>Médicos</h2>
         <Link to='/cadastrar/medico'><button className='cadastrar'>Cadastrar Novo Médico <FaLocationArrow /></button></Link>

@@ -3,6 +3,8 @@ import ExibirConsultasPendentes from './ExibirConsultasPendentes';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const ConsultasPendentes = () => {
 
@@ -22,7 +24,16 @@ const ConsultasPendentes = () => {
             'Content-Type': 'application/json'
           }
         });
-
+        toast.success('Consultas Pendentes Carregadas', {
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
         const data = await consultas.json();
         setDados(data);
       }catch(e){
@@ -44,6 +55,7 @@ const ConsultasPendentes = () => {
 
   return (
     <div className='pacientes'>
+      <ToastContainer />
       <div className="cadastrar">
         <h2>Consultas</h2>
         <div className='button-wrapper'>

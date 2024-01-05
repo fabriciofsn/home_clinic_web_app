@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import "./CadastrarPaciente.css";
 import axios from 'axios';
 import Heart from '../../assets/Heart.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CadastrarPaciente = () => {
   const navigator = useNavigate();
+  const token = localStorage.getItem('token');
   const [load, setLoad] = useState(false);
 
   const [formulario, setFormulario] = useState({
@@ -47,11 +50,33 @@ const CadastrarPaciente = () => {
     setLoad(true);
     
     try{
-      await axios.post('http://localhost:3000/cadastrar/paciente',formulario);
-      alert('Paciente Cadastrado! Você será redirecionado à lista de clientes.')
-      navigator('/pacientes');
+      const cadastro = await axios.post('http://localhost:3000/cadastrar/paciente',formulario,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+     
+      if(cadastro.status == 200){
+        toast.success('Paciente Cadastrado! Você será redirecionado à lista de clientes.',{
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+      setTimeout(() =>{
+        navigator('/pacientes');
+      }, 3000)
+      }
     }catch(e){
-      alert(`Ocorreu um erro ao cadastrar paciente ${e}`);
+      toast.error(`Ocorreu um erro ao cadastrar paciente ${e.message}`);
+      setTimeout(() =>{
+        navigator('/');
+      })
     }finally{
       setLoad(false);
     }
@@ -59,6 +84,7 @@ const CadastrarPaciente = () => {
 
   return (
     <div className='form'>
+      <ToastContainer />
       <div className="titulo">
         <h1>Cadastrar Paciente</h1>
       </div>

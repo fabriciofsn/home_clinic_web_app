@@ -6,6 +6,8 @@ import { MdWatchLater } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
 import ExibirConsultas from './ExibirConsultas';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Consultas = () => {
 
@@ -25,11 +27,29 @@ const Consultas = () => {
           }
         });
         setDados(consultas);
-
+        toast.success('Consultas Carregadas...',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
       }catch(e){
         if(e.response.status === 401){
-          navigator('/');
-          alert(`Você precisa estar autenticado ${e}`);
+          // navigator('/');
+          toast.error('Você precisa estar autenticado',{
+            position: "top-left",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         }
       }finally{
         setLoading(false);
@@ -46,6 +66,7 @@ const Consultas = () => {
 
   return (
     <div className='pacientes'>
+      <ToastContainer />
       <div className="cadastrar">
         <h2>Consultas</h2>
         <div className='button-wrapper'>

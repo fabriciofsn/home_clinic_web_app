@@ -5,6 +5,8 @@ import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Pacientes = () => {
 
@@ -27,9 +29,33 @@ const Pacientes = () => {
       })
       const data = await pacientes.json();
       setDados(data);
+
+      if(pacientes.ok){
+        toast.success('Pacientes Carregados.',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      }
       } catch (error) {
-        alert(`Você precisa estar autenticado ${error}`);
+        toast.error('Você precisa estar autenticado!',{
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+        setTimeout(() =>{
         navigator('/');
+      },1000)
       }finally{
         setLoading(false);
       }
@@ -44,6 +70,16 @@ const Pacientes = () => {
 
   return (
     <div className='pacientes'>
+      <ToastContainer position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"/>
       <div className="cadastrar">
         <h2>Pacientes</h2>
         <Link to='/cadastrar/paciente'><button className='cadastrar'>Cadastrar Novo Paciente <FaLocationArrow /></button></Link>
