@@ -4,12 +4,14 @@ import { FaUsers } from "react-icons/fa";
 import { GiNinjaMask } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { MdAssignment } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { LuLogIn } from "react-icons/lu";
 import "./Header.css";
 import { Link } from 'react-router-dom';
 import Login from '../login/Login';
 
 const Header = () => {  
+  const token = localStorage.getItem('token');
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const refUl = useRef(null);
   const popupRef = useRef(null);
@@ -19,6 +21,10 @@ const Header = () => {
     refUl.current.classList.toggle('active');
   }
 
+  function logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/'; 
+  }
 
    const handleOpenLoginPopup = () => {
     setIsLoginPopupOpen(true);
@@ -50,7 +56,7 @@ const Header = () => {
             </li>
 
             <li>
-              <a onClick={handleOpenLoginPopup}href="#"><LuLogIn/> Login</a>
+              {token ? <a onClick={logout} href="#"><RiLogoutBoxLine /> Logout</a> : <a onClick={handleOpenLoginPopup}href="#"><LuLogIn/> Login</a>}
             </li>
           </ul>
            

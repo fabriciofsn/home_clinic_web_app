@@ -1,13 +1,34 @@
 import React, { useState } from 'react'
 import "./Login.css";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = ({isOpen,onClose}) => {
-
+  const navigator = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    
+  const handleLogin = async () => {
+    try {
+      const login = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email,password})
+      });
+      if(login.status == 200){
+        const data = await login.json();
+        const token = localStorage.setItem('token', data);
+        alert('Login Bem-Sucedido');
+      }
+    } catch (error) {
+      if(error.status == 401){
+        console.log(error.message);
+      }
+      alert(`Ocorreu um erro ao tentar logar ${error.message}`);
+    }
     onClose();
   };
 

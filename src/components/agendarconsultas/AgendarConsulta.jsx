@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./AgendarConsultas.css";
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import Heart from '../../assets/Heart.svg';
+import axios from 'axios';
 
 const AgendarConsulta = () => {
   const navigator = useNavigate();
   const [load, setLoad] = useState(false);
   const [pacientes, setPacientes] = useState(null);
   const [medicos, setMedicos] = useState(null);
+  const token = localStorage.getItem('token');
 
   const [formulario, setFormulario] = useState({
     paciente: '',
@@ -17,7 +17,7 @@ const AgendarConsulta = () => {
     data: '',
     valor: '',
     status_do_pagamento: 'CONFIRMADO',
-    status_da_consulta: 'CANCELADA',
+    status_da_consulta: 'PENDENTE',
     metodo_do_pagamento: 'CARTAO_DE_CREDITO',
   });
   
@@ -33,12 +33,29 @@ const AgendarConsulta = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.post(`http://localhost:3000/agendar/consulta`,formulario);
-      alert('Consulta Agendada!');
-      navigator('/consultas'); 
-  }catch(e){
-    alert(`Ocorreu um erro ao agendar esta consulta ${e}`);
-  }finally{
+        const salvar = await axios.post('http://localhost:3000/agendar/consulta',formulario,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },    
+      });
+     
+      if (salvar.status === 200) {
+        console.log(salvar);
+        alert('Consulta Enviada Para Revisão!');
+        navigator('/consultas/pendentes');
+      }else {
+        const errorData = salvar;
+        throw new Error(`Erro na solicitação: ${JSON.stringify(errorData)}`);
+      }
+  }catch (error) {
+    if (error.response.status === 401) {
+      alert(`Você precisa estar autenticado ${error}`);
+      navigator('/');
+    } else {
+      console.error(error.message);
+    }
+  } finally {
     setLoad(false);
   }
 }
@@ -46,33 +63,53 @@ const AgendarConsulta = () => {
     async function buscarMedicos(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/medicos`);
-      setMedicos(res);
+      let res = await fetch(`http://localhost:3000/medicos`,{
+        method: 'GET',
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await res.json();
+      setMedicos(data);
     }catch(e){
-      console.log(e);
+      if(e.response.status == 401){
+        alert(`Você precisa estar autenticado ${e.message}`);
+        navigator('/');
+      }
     }finally{
       setLoad(false);
     }
   }
     buscarMedicos();
-  },[])
+  },[token])
 
    useEffect(() =>{
     async function buscarPacientes(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/pacientes`);
-      setPacientes(res);
+      let res = await fetch(`http://localhost:3000/pacientes`,{
+        method: 'GET',
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      if(res){
+        const data = await res.json();
+        setPacientes(data);
+      }
     }catch(e){
-      console.log(e);
+      alert(`Você precisa esta autenticado ${e.message}`);
+      navigator('/');
     }finally{
       setLoad(false);
     }
   }
     buscarPacientes();
-  },[])
+  },[token])
 
-  const medicosFilter = medicos && medicos.data.medicosDTO.filter(medico => medico.status == 'ATIVO');
+  const medicosFilter = medicos && medicos.medicosDTO.filter(medico => medico.status == 'ATIVO');
 
   return (
     <div className='form'>
@@ -86,7 +123,7 @@ const AgendarConsulta = () => {
           <div className="campo">
             <label>Paciente:</label>
             <select name="paciente" id="paciente" value={formulario.paciente} onChange={handleChange} required>
-              {pacientes && pacientes.data.map(paciente =>{
+              {pacientes && pacientes.map(paciente =>{
                 return <option key={paciente.id} style={{textTransform: 'capitalize'}} value={paciente.id}>{paciente.nome}</option>
             })}
             </select>
@@ -128,8 +165,9 @@ const AgendarConsulta = () => {
           <div className="campo">
             <label>Status Da Consulta:</label>
             <select disabled name="status_da_consulta" value={formulario.status_da_consulta} onChange={handleChange} id="status_da_consulta">
-              <option defaultChecked="PENDENTE" value="CANCELADA">PENDENTE</option>
+              <option defaultChecked="PENDENTE" value="PENDENTE">PENDENTE</option>
               <option value="AGENDADA">AGENDADA</option>
+              <option value="CANCELADA">CANCELADA</option>
             </select>
           </div>
           <div className="campo">

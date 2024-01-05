@@ -3,34 +3,44 @@ import ExibirConsultasPendentes from './ExibirConsultasPendentes';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const ConsultasPendentes = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [dados, setDados] = useState(null);
+  const token = localStorage.getItem('token');
   const [isLoading, setLoading] = useState(false);
   
   useEffect(() =>{
     setLoading(true)
     async function buscarConsultas(){
       try{
-        const consultas = await axios.get('http://localhost:3000/consultas');
-        setDados(consultas);
+        const consultas = await fetch('http://localhost:3000/consultas',{
+          method: 'GET',
+          headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await consultas.json();
+        setDados(data);
       }catch(e){
-        alert(`Ocorreu um erro ${e}`);
+        if(e.status == 401){
+          alert(`Você precisa estar autenticado ${e.message}`);
+        }
       }finally{
         setLoading(false);
       }
     }
     buscarConsultas();
-  }, []);
+  }, [token]);
  
-  const filteredData = dados && dados.data.consultas && dados.data.consultas.filter((data) => {
+  const filteredData = dados && dados.consultas && dados.consultas.filter((data) => {
     return data.paciente.nome.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  const filteredConsultas = filteredData?.filter(consulta => consulta.status_da_consulta !== 'AGENDADA');
+  const filteredConsultas = filteredData?.filter(consulta => consulta.status_da_consulta == 'PENDENTE');
 
   return (
     <div className='pacientes'>

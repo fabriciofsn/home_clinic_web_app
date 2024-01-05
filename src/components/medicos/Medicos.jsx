@@ -5,20 +5,42 @@ import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import ExibirMedicos from './ExibirMedicos';
+import { useNavigate } from 'react-router-dom';
 
 const Medicos = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [dados, setDados] = useState(null);
-  const {request, isLoading} = useFetch('http://localhost:3000/medicos');
+  const token = localStorage.getItem('token');
+  const [isLoading, setLoading] = useState(false);
+  const navigator = useNavigate();
 
   useEffect(() =>{
-    request().then((response) =>{
-      setDados(response);
-    })
-  }, []);
+    async function buscarMedicos(){
+      setLoading(true);
+      try {
+        const medicos = await fetch('http://localhost:3000/medicos', {
+          method: 'GET',
+          headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
 
-  const filteredData = dados && dados.data && dados.data.medicosDTO.filter((data) => {
+        const data = await medicos.json();
+        setDados(data);
+
+      } catch (error) {
+        navigator('/');
+        alert(`Você precisa estar autenticado ${error}`);
+      }finally{
+        setLoading(false);
+      }
+    }
+    buscarMedicos();
+  }, [token]);
+
+  const filteredData = dados && dados && dados.medicosDTO.filter((data) => {
     return data.nome.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
@@ -33,18 +55,14 @@ const Medicos = () => {
           onChange={(e) => setSearchTerm(e.target.value)} placeholder="Procurar Por Médico..." />
     </div>
       <div className="wrapper">
-        {/* <div className="slide"> */}
-          {isLoading && <div className='loading'><img src={Heart} /></div> }
-          {/* <img src={prescription} alt="" /> */}
+        {isLoading && <div className='loading'><img src={Heart} /></div> }
         {filteredData && (
           <div style={{ display: 'flex' }}>
             <ExibirMedicos medico={filteredData} />
           </div>
         )}
-
         </div>
       </div>
-    // </div>
   )
 }
 

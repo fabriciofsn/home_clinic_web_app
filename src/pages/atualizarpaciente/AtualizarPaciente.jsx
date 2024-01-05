@@ -8,6 +8,7 @@ import Heart from '../../assets/Heart.svg';
 const CadastrarPaciente = () => {
   const navigator = useNavigate();
   const [load, setLoad] = useState(false);
+  const token = localStorage.getItem('token');
   let {id} = useParams();
   
   const [formulario, setFormulario] = useState({
@@ -48,11 +49,21 @@ const CadastrarPaciente = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.put(`http://localhost:3000/paciente/atualizar/${id}`,formulario);
+      await axios.put(`http://localhost:3000/paciente/atualizar/${id}`,formulario,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
       alert('Paciente Atualizado! Você está sendo redirecionado à lista de clientes');
       navigator('/pacientes'); 
   }catch(e){
-    alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    if(e.status === 401){
+      alert(`Você precisar estar autenticado`);
+      navigator('/');
+    }else{
+      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    }
   }finally{
     setLoad(false);
   }
@@ -61,7 +72,12 @@ const CadastrarPaciente = () => {
     async function recuperarPaciente(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/paciente/${id}`);
+      let res = await axios.get(`http://localhost:3000/paciente/${id}`,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
        setFormulario({
           nome: res.data.pacienteRecuperado.nome,
           CPF: res.data.pacienteRecuperado.CPF,
@@ -77,7 +93,12 @@ const CadastrarPaciente = () => {
         }
       })
     }catch(e){
-      console.log(e);
+      if(e.status === 401){
+        alert(`Você precisar estar autenticado`);
+        navigator('/');
+    }else{
+      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    }
     }finally{
       setLoad(false);
     }

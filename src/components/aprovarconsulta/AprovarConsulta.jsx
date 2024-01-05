@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const AprovarConsulta = () => {
   let { id } = useParams();
+  const token = localStorage.getItem('token');
   const navigator = useNavigate();
 
     const [formulario, setFormulario] = useState({
@@ -24,7 +25,13 @@ const AprovarConsulta = () => {
       if(confirme){
       
       try{
-        await axios.get(`http://localhost:3000/consulta/${id}`).then((consulta) =>{
+        const consulta = await axios.get(`http://localhost:3000/consulta/${id}`,{
+          headers:{
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+        }).then((consulta) =>{
+          console.log(consulta)
           setFormulario({
           id: consulta.data.consulta.id,
           paciente: consulta.data.consulta.paciente.id,
@@ -37,21 +44,34 @@ const AprovarConsulta = () => {
         })
         })
       }catch(e){
-        console.error(`Error: ${e}`);
-        alert(`Ocorreu um erro ao aprovar esta consulta`);
+        alert(`Ocorreu um erro ao aprovar esta consulta ${e}`);
       } 
     }
   }
   aprovarConsulta();
-  },[id,navigator])
+  },[id])
 
   useEffect(() => {
 
     if (formulario.id) {
       const updateConsulta = async () => {
-        await axios.put(`http://localhost:3000/consulta/${id}`, formulario);
+        try {
+          const update = await axios.put(`http://localhost:3000/consulta/${id}`, formulario,{
+          headers:{
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        console.log(update);
         alert('Consulta Aprovada!');
         navigator('/consultas/pendentes');
+        } catch (error) {
+          if(error.status === 401){
+            alert('Você precisa estar autenticado');
+          }else{
+            alert(`Error ${error.message}`);
+          }
+        }
       };
       updateConsulta();
     }

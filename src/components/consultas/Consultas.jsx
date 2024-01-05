@@ -3,23 +3,34 @@ import "./Consultas.css";
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { MdWatchLater } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ExibirConsultas from './ExibirConsultas';
 import axios from 'axios';
 
 const Consultas = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
+  const token = localStorage.getItem('token');
   const [dados, setDados] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const navigator = useNavigate();
   useEffect(() =>{
     setLoading(true)
     async function buscarConsultas(){
       try{
-        const consultas = await axios.get('http://localhost:3000/consultas');
+        const consultas = await axios.get('http://localhost:3000/consultas', {
+          method: "GET",
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setDados(consultas);
+
       }catch(e){
-        alert(`Ocorreu um erro ${e}`);
+        if(e.response.status === 401){
+          navigator('/');
+          alert(`Você precisa estar autenticado ${e}`);
+        }
       }finally{
         setLoading(false);
       }
@@ -32,9 +43,6 @@ const Consultas = () => {
   });
 
   const filteredConsultas = filteredData?.filter(consulta => consulta.status_da_consulta == 'AGENDADA');
-  const data = new Date();
-  const filtroPorData = filteredConsultas && filteredConsultas.filter(consulta => new Date(consulta.data) >= data);
-  
 
   return (
     <div className='pacientes'>
@@ -51,9 +59,9 @@ const Consultas = () => {
     </div>
       <div className="wrapper">
           {isLoading && <div className='loading'><img src={Heart} /></div> }
-        {filteredData && (
+        {filteredConsultas && (
           <div style={{ display: 'flex' }}>
-            <ExibirConsultas consultas={filtroPorData} />
+            <ExibirConsultas consultas={filteredConsultas} />
           </div>
         )}
         </div>

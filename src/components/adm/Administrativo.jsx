@@ -13,7 +13,7 @@ const Administrativo = () => {
 
       <div className="button">
         <Link to="/agendar/consultas"><button className='consulta'>Agendar Uma Consulta <IoIosArrowForward /></button></Link>
-        <Link to="/cancelar"><button className='cancelar'>Cancelar Uma Consulta <MdDoubleArrow /></button></Link>
+        <Link to="/cancelar"><button className='cancelar'>Consultas Canceladas <MdDoubleArrow /></button></Link>
       </div>
     </div>
   );

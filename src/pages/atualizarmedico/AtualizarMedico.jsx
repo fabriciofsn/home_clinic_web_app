@@ -8,6 +8,7 @@ import Heart from '../../assets/Heart.svg';
 const AtualizarMedico = () => {
   const navigator = useNavigate();
   const [load, setLoad] = useState(false);
+  const token = localStorage.getItem('token');
   let {id} = useParams();
   
   const [formulario, setFormulario] = useState({
@@ -50,11 +51,21 @@ const AtualizarMedico = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.put(`http://localhost:3000/medico/atualizar/${id}`,formulario);
+      await axios.put(`http://localhost:3000/medico/atualizar/${id}`,formulario,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
       alert('Médico Atualizado! Você está sendo redirecionado à lista de Médicos');
       navigator('/medicos'); 
   }catch(e){
-    alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    if(e.status === 401){
+      alert(`Você precisar estar autenticado`);
+      navigator('/');
+    }else{
+      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    }
   }finally{
     setLoad(false);
   }
@@ -63,7 +74,12 @@ const AtualizarMedico = () => {
     async function medicoRecuperado(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/medico/${id}`);
+      let res = await axios.get(`http://localhost:3000/medico/${id}`,{
+        headers:{
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
        setFormulario({
           nome: res.data.nome,
           CRM: res.data.CRM,
@@ -81,7 +97,12 @@ const AtualizarMedico = () => {
         }
       })
     }catch(e){
-      console.log(e);
+      if(e.status === 401){
+      alert(`Você precisar estar autenticado`);
+      navigator('/');
+    }else{
+      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+    }
     }finally{
       setLoad(false);
     }

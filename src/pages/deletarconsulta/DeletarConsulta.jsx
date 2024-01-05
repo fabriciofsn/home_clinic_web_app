@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const DeletarConsulta = () => {
   const { id } = useParams();
+  const token = localStorage.getItem('token');
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -12,7 +13,12 @@ const DeletarConsulta = () => {
     const deletarConsulta = async () => {
       if (confirme) {
         try {
-          await axios.get(`http://localhost:3000/consulta/deletar/${id}`);
+          await axios.get(`http://localhost:3000/consulta/deletar/${id}`, {
+            headers:{
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
           alert('Consulta Deletada');
           navigator('/consultas/pendentes');
         } catch (e) {

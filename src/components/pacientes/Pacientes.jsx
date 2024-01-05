@@ -4,21 +4,41 @@ import Exibir from '../exibir/Exibir';
 import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Pacientes = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [dados, setDados] = useState(null);
-  const {request, isLoading} = useFetch('http://localhost:3000/pacientes');
+  const [isLoading, setLoading] = useState(false);
+  const token = localStorage.getItem('token');
+  const navigator = useNavigate();
 
   useEffect(() =>{
-    request().then((response) =>{
-      setDados(response);
-    })
-  }, []);
+    async function buscarPacientes(){
+      setLoading(true);
+      try {
+        const pacientes = await fetch('http://localhost:3000/pacientes',{
+        method: 'GET',
+        headers:{
+          'Authorization': `Bearer: ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      const data = await pacientes.json();
+      setDados(data);
+      } catch (error) {
+        alert(`Você precisa estar autenticado ${error}`);
+        navigator('/');
+      }finally{
+        setLoading(false);
+      }
+    }
+    buscarPacientes();
+  }, [token]);
+  
 
-  const filteredData = dados && dados.data && dados.data.filter((data) => {
+  const filteredData = dados && dados && dados.filter((data) => {
     return data.nome.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
