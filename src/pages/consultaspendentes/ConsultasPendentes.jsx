@@ -38,7 +38,7 @@ const ConsultasPendentes = () => {
         setDados(data);
       }catch(e){
         if(e.status == 401){
-          alert(`Você precisa estar autenticado ${e.message}`);
+          toast.error(`Você precisa estar autenticado`);
         }
       }finally{
         setLoading(false);

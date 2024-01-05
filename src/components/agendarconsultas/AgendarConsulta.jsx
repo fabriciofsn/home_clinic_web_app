@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import "./AgendarConsultas.css";
 import Heart from '../../assets/Heart.svg';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const AgendarConsulta = () => {
   const navigator = useNavigate();
@@ -39,12 +41,24 @@ const AgendarConsulta = () => {
           'Content-Type': 'application/json'
         },    
       });
-     
+   
       if (salvar.status === 200) {
         console.log(salvar);
-        alert('Consulta Enviada Para Revisão!');
-        navigator('/consultas/pendentes');
+        toast.success('Consulta Enviada Para Revisão',{
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+        setTimeout(() =>{
+          navigator('/consultas/pendentes');
+        },1500)
       }else {
+        toast.error('Você precisa estar autenticado')
         const errorData = salvar;
         throw new Error(`Erro na solicitação: ${JSON.stringify(errorData)}`);
       }
@@ -72,10 +86,13 @@ const AgendarConsulta = () => {
       });
       const data = await res.json();
       setMedicos(data);
+      
     }catch(e){
       if(e.response.status == 401){
-        alert(`Você precisa estar autenticado ${e.message}`);
-        navigator('/');
+        toast.error(`Você precisa estar autenticado`);
+        setTimeout(() =>{
+          navigator('/');
+        },2000)
       }
     }finally{
       setLoad(false);
@@ -100,8 +117,10 @@ const AgendarConsulta = () => {
         setPacientes(data);
       }
     }catch(e){
-      alert(`Você precisa esta autenticado ${e.message}`);
-      navigator('/');
+      toast.error(`Você precisa esta autenticado`);
+      setTimeout(() =>{
+        navigator('/');
+      },2000)
     }finally{
       setLoad(false);
     }
@@ -113,6 +132,7 @@ const AgendarConsulta = () => {
 
   return (
     <div className='form'>
+      <ToastContainer />
       <div className="titulo">
         <h1>Agendar Consulta</h1>
       </div>
