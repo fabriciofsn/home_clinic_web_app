@@ -22,8 +22,11 @@ const Header = () => {
   }
 
   function logout() {
-    localStorage.removeItem('token');
-    window.location.href = '/'; 
+    const confirme = confirm('Deseja encerrar esta sessão?')
+    if(confirme){
+      localStorage.removeItem('token');
+      window.location.href = '/'; 
+    }
   }
 
    const handleOpenLoginPopup = () => {
