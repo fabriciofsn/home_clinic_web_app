@@ -46,6 +46,8 @@ const AprovarConsulta = () => {
       }catch(e){
         alert(`Ocorreu um erro ao aprovar esta consulta ${e}`);
       } 
+    }else{
+      navigator('/consultas/pendentes');
     }
   }
   aprovarConsulta();

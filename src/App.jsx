@@ -16,6 +16,8 @@ import ConsultasPendentes from './pages/consultaspendentes/ConsultasPendentes';
 import DeletarConsulta from './pages/deletarconsulta/DeletarConsulta';
 import AprovarConsulta from './components/aprovarconsulta/AprovarConsulta';
 import Error404 from './pages/error/Error404';
+import AtualizarConsulta from './pages/atualizarconsulta/AtualizarConsulta';
+import ConsultasCanceladas from './pages/consultascanceladas/ConsultasCanceladas';
 
 const App = () => {
   return (
@@ -39,6 +41,8 @@ const App = () => {
         <Route path="/consultas/pendentes" element={<ConsultasPendentes />} />
         <Route path="/deletar/consulta/:id" element={<DeletarConsulta />} />
         <Route path="/aprovar/consulta/:id" element={<AprovarConsulta />} />
+        <Route path="/atualizar/consulta/:id" element={<AtualizarConsulta />} />
+        <Route path="/consultas/canceladas" element={<ConsultasCanceladas />} />
         <Route path="*" element={<Error404 />}/>
       </Routes>
         </>

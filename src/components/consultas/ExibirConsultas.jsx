@@ -29,7 +29,7 @@ const ExibirConsultas = (props) => {
               <td>{consulta.status_da_consulta}</td>
               <td>{consulta.status_do_pagamento}</td>
               <td>{consulta.metodo_do_pagamento}</td>
-              <td>{consulta.data}</td>
+              <td>{consulta.data.slice(0,10)}</td>
               <td style={{cursor: 'pointer'}}><Link to={`/atualizar/consulta/${consulta.id}`}>{<CiEdit size={30} color='#3498db'/>}</Link></td>
             </tr>
           ))}
