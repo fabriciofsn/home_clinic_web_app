@@ -14,7 +14,7 @@
   margin: 20px 0;
 }
 
-button.consulta, .cancelar{
+button.consulta, .cancelar,.download{
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -7,16 +7,16 @@ import { ImSad } from "react-icons/im";
 
 const Error404 = () => {
 
-    toast.error('Página não encontrada',{
-      position: "top-left",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    })
+  toast.error('Página não encontrada',{
+    position: "top-left",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  })
 
   return (
     <div className="container-error">

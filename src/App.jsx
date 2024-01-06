@@ -15,7 +15,7 @@ import AtualizarMedico from './pages/atualizarmedico/AtualizarMedico';
 import ConsultasPendentes from './pages/consultaspendentes/ConsultasPendentes';
 import DeletarConsulta from './pages/deletarconsulta/DeletarConsulta';
 import AprovarConsulta from './components/aprovarconsulta/AprovarConsulta';
-import Error404 from './pages/error/error404';
+import Error404 from './pages/error/Error404';
 
 const App = () => {
   return (

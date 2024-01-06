@@ -45,7 +45,7 @@ const Pacientes = () => {
       } catch (error) {
         toast.error('Você precisa estar autenticado!',{
           position: "top-left",
-          autoClose: 3000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -55,7 +55,7 @@ const Pacientes = () => {
         })
         setTimeout(() =>{
         navigator('/');
-      },1000)
+      },2000)
       }finally{
         setLoading(false);
       }

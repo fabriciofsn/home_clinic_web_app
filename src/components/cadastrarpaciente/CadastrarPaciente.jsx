@@ -59,7 +59,7 @@ const CadastrarPaciente = () => {
      
       if(cadastro.status == 200){
         toast.success('Paciente Cadastrado! Você será redirecionado à lista de clientes.',{
-        position: "bottom-center",
+        position: "top-left",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -70,7 +70,7 @@ const CadastrarPaciente = () => {
       })
       setTimeout(() =>{
         navigator('/pacientes');
-      }, 3000)
+      }, 2000)
       }
     }catch(e){
       toast.error(`Ocorreu um erro ao cadastrar paciente ${e.message}`);
