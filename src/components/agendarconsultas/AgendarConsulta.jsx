@@ -43,7 +43,6 @@ const AgendarConsulta = () => {
       });
    
       if (salvar.status === 200) {
-        console.log(salvar);
         toast.success('Consulta Enviada Para Revisão',{
         position: "top-left",
         autoClose: 2000,
@@ -58,7 +57,16 @@ const AgendarConsulta = () => {
           navigator('/consultas/pendentes');
         },1500)
       }else {
-        toast.error('Você precisa estar autenticado')
+        toast.error('Você precisa estar autenticado',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
         const errorData = salvar;
         throw new Error(`Erro na solicitação: ${JSON.stringify(errorData)}`);
       }
@@ -86,10 +94,18 @@ const AgendarConsulta = () => {
       });
       const data = await res.json();
       setMedicos(data);
-      
     }catch(e){
       if(e.response.status == 401){
-        toast.error(`Você precisa estar autenticado`);
+        toast.error(`Você precisa estar autenticado`,{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         setTimeout(() =>{
           navigator('/');
         },2000)
@@ -117,7 +133,16 @@ const AgendarConsulta = () => {
         setPacientes(data);
       }
     }catch(e){
-      toast.error(`Você precisa esta autenticado`);
+      toast.error(`Você precisa esta autenticado`,{
+         position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       setTimeout(() =>{
         navigator('/');
       },2000)
@@ -130,6 +155,7 @@ const AgendarConsulta = () => {
 
   const medicosFilter = medicos && medicos.medicosDTO.filter(medico => medico.status == 'ATIVO');
 
+  console.log(formulario);
   return (
     <div className='form'>
       <ToastContainer />

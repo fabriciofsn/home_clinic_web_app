@@ -81,7 +81,9 @@ const CadastrarPaciente = () => {
       setLoad(false);
     }
   };
-
+  if(!token) {
+    return navigator('/');
+  }
   return (
     <div className='form'>
       <ToastContainer />

@@ -78,7 +78,9 @@ const CadastrarMedico= () => {
       setLoad(false);
     }
   };
-
+  if(!token) {
+    return navigator('/');
+  }
   return (
     <div className='form'>
       <ToastContainer />

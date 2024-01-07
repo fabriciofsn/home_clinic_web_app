@@ -4,7 +4,9 @@
   import { MdDelete } from "react-icons/md";
   import { FcApproval } from "react-icons/fc";
   import DeletarConsulta from '../deletarconsulta/DeletarConsulta';
-import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
+  import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
+  import { ToastContainer, toast } from 'react-toastify';
+  import "react-toastify/dist/ReactToastify.css";
 
   const ExibirConsultasPendentes = (props) => {
       function formatData(data){
@@ -21,8 +23,10 @@ import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
       <AprovarConsulta />
       navigator('/consultas/pendentes');
     }
+    
     return (
       <div className="wrapper">
+        <ToastContainer />
         <table>
           <thead>
             <tr>

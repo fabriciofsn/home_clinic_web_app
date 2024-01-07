@@ -24,7 +24,7 @@ const Administrativo = () => {
     })
 
     if(consultas.status == 200){
-
+      
     const agendadas = consultas.data.consultas.filter(consulta => consulta.status_da_consulta == 'AGENDADA');
     const canceladas = consultas.data.consultas.filter(consulta => consulta.status_da_consulta == 'CANCELADA');
     
@@ -95,7 +95,7 @@ const Administrativo = () => {
 
     const download = () =>{
       if(pdf){
-        pdf.save('doc.pdf');
+        pdf.save('relatorio_de_consultas.pdf');
         toast.success('Download Bem-Sucedido', {
         position: "top-left",
         autoClose: 2000,

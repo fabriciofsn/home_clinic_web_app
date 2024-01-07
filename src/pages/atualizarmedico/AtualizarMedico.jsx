@@ -4,6 +4,8 @@ import "./AtualizarMedico.css";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Heart from '../../assets/Heart.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const AtualizarMedico = () => {
   const navigator = useNavigate();
@@ -57,8 +59,19 @@ const AtualizarMedico = () => {
           'Content-Type': 'application/json'
         }
       });
-      alert('Médico Atualizado! Você está sendo redirecionado à lista de Médicos');
-      navigator('/medicos'); 
+       toast.success('Médico Atualizado, Você Será Redirecionado à Página de Médicos',{
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+      setTimeout(() =>{
+        navigator('/medicos'); 
+      },2000)
   }catch(e){
     if(e.status === 401){
       alert(`Você precisar estar autenticado`);
@@ -113,6 +126,7 @@ const AtualizarMedico = () => {
   return (
     <div className='form'>
       <div className="titulo">
+        <ToastContainer />
         <h1>Atualizar Médico</h1>
       </div>
        <form onSubmit={handleSubmit} className="formulario-lindo">

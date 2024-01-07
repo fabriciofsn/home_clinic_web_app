@@ -54,7 +54,7 @@ const AtualizarConsulta = () => {
         theme: "dark",
       })
       setTimeout(() =>{
-        // navigator('/consultas'); 
+        navigator('/consultas'); 
       },2000)
   }catch(e){
     if(e.status === 401){
@@ -183,7 +183,7 @@ const AtualizarConsulta = () => {
             <label>Médico:</label>
             <select name="medico" id="medico" value={formulario.medico} onChange={handleChange} required>
             {consulta && <option key={consulta.medico.id} style={{textTransform: 'capitalize'}} value={consulta.medico.id}>{consulta.medico.nome}</option>} 
-            {/* {medicosFilter && medicosFilter.data.medicosDTO(medico => <option key={medico.id}></option>)} */}
+            {/* {medicosFilter.data.medicosDTO && medicosFilter.data.medicosDTO(medico => <option key={medico.id}></option>)} */}
             </select>
           </div>
         </div>

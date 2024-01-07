@@ -24,7 +24,10 @@ const ConsultasPendentes = () => {
             'Content-Type': 'application/json'
           }
         });
-        toast.success('Consultas Pendentes Carregadas', {
+        const data = await consultas.json();
+        setDados(data);
+        console.log(data)
+        toast.success('Consulta Pendentes Carregadas',{
           position: "top-left",
           autoClose: 2000,
           hideProgressBar: false,
@@ -33,13 +36,18 @@ const ConsultasPendentes = () => {
           draggable: true,
           progress: undefined,
           theme: "dark",
-        })
-        const data = await consultas.json();
-        setDados(data);
+    })
       }catch(e){
-        if(e.status == 401){
-          toast.error(`Você precisa estar autenticado`);
-        }
+        toast.error('Você Precisa Estar Autenticado',{
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+      })
       }finally{
         setLoading(false);
       }

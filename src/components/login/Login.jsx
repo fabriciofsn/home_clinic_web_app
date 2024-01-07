@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import "./Login.css";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({isOpen,onClose}) => {
   const [email, setEmail] = useState('');
@@ -17,15 +19,21 @@ const Login = ({isOpen,onClose}) => {
       if(login.status == 200){
         const data = await login.json();
         localStorage.setItem('token', data);
-        alert('Login Bem-Sucedido!');
-      }
-    } catch (error) {
-      if(error.status == 401){
-        console.log(error.message);
-      }
-      alert(`Ocorreu um erro ao tentar logar ${error.message}`);
+        toast.success('Login Bem-Sucedido',{
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+      onClose();
     }
-    onClose();
+  }catch (error) {
+      alert('Dados Incorretos');
+    }
   };
 
   return (
@@ -34,6 +42,7 @@ const Login = ({isOpen,onClose}) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
+      <ToastContainer />
         <h2>Login</h2>
         <form>
           <label>Email:</label>

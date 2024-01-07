@@ -4,6 +4,8 @@ import "./AtualizarPaciente.css";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Heart from '../../assets/Heart.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CadastrarPaciente = () => {
   const navigator = useNavigate();
@@ -55,8 +57,19 @@ const CadastrarPaciente = () => {
           'Content-Type': 'application/json'
         }
       });
-      alert('Paciente Atualizado! Você está sendo redirecionado à lista de clientes');
-      navigator('/pacientes'); 
+      toast.success('Paciente Atualizado, Você Será Redirecionado à Página de Pacientes',{
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+      setTimeout(() =>{
+        navigator('/pacientes'); 
+      },2000)
   }catch(e){
     if(e.status === 401){
       alert(`Você precisar estar autenticado`);
@@ -108,6 +121,7 @@ const CadastrarPaciente = () => {
 
   return (
     <div className='form'>
+      <ToastContainer />
       <div className="titulo">
         <h1>Atualizar Paciente</h1>
       </div>
