@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import "./Login.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Heart from '../../assets/Heart.svg';
 
 const Login = ({isOpen,onClose}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const login = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -30,15 +33,29 @@ const Login = ({isOpen,onClose}) => {
         theme: "dark",
       })
       onClose();
+    }else{
+      toast.error('Dados Incorretos! Verifique Email e/ou Senha',{
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
     }
   }catch (error) {
       alert('Dados Incorretos');
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
      <div className={`login-popup ${isOpen ? 'open' : ''}`}>
       <div className="login-popup-content">
+      {isLoading && <div style={{position: 'fixed',right: '.5%'}} className='loading'><img src={Heart} /></div> }
         <span className="close" onClick={onClose}>
           &times;
         </span>

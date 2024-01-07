@@ -53,6 +53,9 @@ const Medicos = () => {
           progress: undefined,
           theme: "dark",
         })
+        setTimeout(() =>{
+          navigator('/');
+        }, 2000)
       }finally{
         setLoading(false);
       }
@@ -63,7 +66,7 @@ const Medicos = () => {
   const filteredData = dados && dados && dados.medicosDTO.filter((data) => {
     return data.nome.toLowerCase().includes(searchTerm.toLowerCase());
   });
-
+  
   return (
     <div className='pacientes'>
       <ToastContainer />
