@@ -7,6 +7,9 @@
 import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
 
   const ExibirConsultasCanceladas = (props) => {
+    function formatData(data){
+      return data.slice(0,10);
+    }
     return (
       <div className="wrapper">
         <table>
@@ -30,7 +33,7 @@ import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
                 <td>{consulta.status_da_consulta}</td>
                 <td>{consulta.status_do_pagamento}</td>
                 <td>{consulta.metodo_do_pagamento}</td>
-                <td>{consulta.data}</td>
+                <td>{formatData(consulta.data)}</td>
               </tr>
             ))}
           </tbody>

@@ -7,7 +7,9 @@
 import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
 
   const ExibirConsultasPendentes = (props) => {
-
+      function formatData(data){
+      return data.slice(0,10);
+    }
     const navigator = useNavigate();
     
     const handleDelete = () =>{
@@ -44,7 +46,7 @@ import AprovarConsulta from '../../components/aprovarconsulta/AprovarConsulta';
                 <td>{consulta.status_da_consulta}</td>
                 <td>{consulta.status_do_pagamento}</td>
                 <td>{consulta.metodo_do_pagamento}</td>
-                <td>{consulta.data}</td>
+                <td>{formatData(consulta.data)}</td>
                 <td style={{cursor: 'pointer'}}>
                   <Link to={`/aprovar/consulta/${consulta.id}`}>
                     {<FcApproval onClick={handleAprovar} size={30} color='#3498db'/>}
