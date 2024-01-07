@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import "./Login.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -8,9 +8,13 @@ const Login = ({isOpen,onClose}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const btnRef = useRef();
 
   const handleLogin = async () => {
     setLoading(true);
+    if(btnRef.current){
+      btnRef.current.style.opacity = '0.5';
+    }
     try {
       const login = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -49,6 +53,9 @@ const Login = ({isOpen,onClose}) => {
       alert('Dados Incorretos');
     }finally{
       setLoading(false);
+      if(btnRef.current){
+      btnRef.current.style.opacity = '1';
+    }
     }
   };
 
@@ -76,7 +83,7 @@ const Login = ({isOpen,onClose}) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="button" onClick={handleLogin}>
+          <button ref={btnRef} type="button" onClick={handleLogin}>
             Login
           </button>
         </form>
