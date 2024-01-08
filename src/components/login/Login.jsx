@@ -50,6 +50,7 @@ const Login = ({isOpen,onClose}) => {
       })
     }
   }catch (error) {
+      console.log(error)
       alert('Dados Incorretos');
     }finally{
       setLoading(false);
