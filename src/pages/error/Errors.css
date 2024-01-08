@@ -6,7 +6,7 @@
 }
 
 .wrapper-error h1{
-    color: #9e0a9e;
+    color: #E86BBB;
     font-size: 4em;
 }
 
@@ -19,6 +19,11 @@
 .wrapper-error{
     display: block;
     text-align: center;
+}
+
+.sitting{
+    width: 100%;
+    max-width: 200px;
 }
 
 @media (max-width: 798px){

@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header>
-        <h1>Home Clinic</h1>
+        <h1>HealTech</h1>
       <div className="container">
           <ul ref={refUl} onClick={modal}>
             <li>

@@ -75,6 +75,7 @@ header .container ul li a{
     height: auto;
     display: initial;
     animation: anim .2s forwards;
+    z-index: 999;
   }
 
  header .container ul.active li{

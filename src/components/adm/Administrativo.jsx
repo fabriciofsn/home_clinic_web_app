@@ -8,6 +8,7 @@ import { FaDownload } from "react-icons/fa";
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import { ToastContainer, toast } from 'react-toastify';
+import animation from '../../assets/animation.gif';
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -119,6 +120,7 @@ const Administrativo = () => {
       <img src={medicos} alt="medicos" />
       <ToastContainer />
       <div className="button">
+        {/* <img src={animation} alt="" /> */}
         <Link to="/agendar/consultas"><button className='consulta'>Agendar Uma Consulta <IoIosArrowForward /></button></Link>
         <Link to="/consultas/canceladas"><button className='cancelar'>Consultas Canceladas <MdDoubleArrow /></button></Link>
         <button className='download' onClick={downloadRelatorio}>Relatório de Consultas <FaDownload /></button>

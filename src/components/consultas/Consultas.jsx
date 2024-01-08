@@ -40,7 +40,6 @@ const Consultas = () => {
 
       }catch(e){
         if(e.response.status === 401){
-          // navigator('/');
           toast.error('Você precisa estar autenticado',{
             position: "top-left",
             autoClose: 2000,
@@ -52,6 +51,9 @@ const Consultas = () => {
             theme: "dark",
           });
         }
+        setTimeout(() =>{
+           navigator('/');
+        },2000)
       }finally{
         setLoading(false);
       }
