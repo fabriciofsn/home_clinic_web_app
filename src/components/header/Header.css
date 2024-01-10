@@ -10,6 +10,10 @@ header h1{
   color: #d9d9d9;
 }
 
+header h1 img {
+  max-width: 3rem;
+}
+
 .bars{
   display: none;
 }

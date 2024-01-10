@@ -9,6 +9,7 @@ import { LuLogIn } from "react-icons/lu";
 import "./Header.css";
 import { Link } from 'react-router-dom';
 import Login from '../login/Login';
+import Logo from"../../assets/ht-logo.png";
 
 const Header = () => {  
   const token = localStorage.getItem('token');
@@ -40,7 +41,7 @@ const Header = () => {
 
   return (
     <header>
-        <h1>HealTech</h1>
+        <h1><img src={Logo} alt="Logo do HealTech" />HealTech</h1>
       <div className="container">
           <ul ref={refUl} onClick={modal}>
             <li>
