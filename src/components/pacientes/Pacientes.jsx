@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Pacientes.css";
 import Exibir from '../exibir/Exibir';
-import useFetch from '../useFetch/useFetch';
 import Heart from '../../assets/Heart.svg';
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';

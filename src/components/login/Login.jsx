@@ -50,8 +50,7 @@ const Login = ({isOpen,onClose}) => {
       })
     }
   }catch (error) {
-      console.log(error)
-      alert('Dados Incorretos');
+      toast.error(`Error: ${error}! \n Verifique sua conexão com a internet.`)
     }finally{
       setLoading(false);
       if(btnRef.current){
