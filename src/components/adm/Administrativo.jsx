@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import medicos from '../../assets/medicos.svg';
 import "./Administrativo.css";
 import { Link } from 'react-router-dom';
@@ -8,7 +8,6 @@ import { FaDownload } from "react-icons/fa";
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import { ToastContainer, toast } from 'react-toastify';
-import animation from '../../assets/animation.gif';
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -17,7 +16,7 @@ const Administrativo = () => {
   const [pdf, setPDF] = useState(null);
 
   const downloadRelatorio = async () =>{
-    const consultas = await axios.get('http://localhost:3000/consultas',{
+    const consultas = await axios.get('https://apiclinica-brvy.onrender.com/consultas',{
       headers:{
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

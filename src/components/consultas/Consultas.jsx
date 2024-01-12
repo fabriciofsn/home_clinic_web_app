@@ -20,7 +20,7 @@ const Consultas = () => {
     setLoading(true)
     async function buscarConsultas(){
       try{
-        const consultas = await axios.get('http://localhost:3000/consultas', {
+        const consultas = await axios.get('https://apiclinica-brvy.onrender.com/consultas', {
           method: "GET",
           headers:{
             'Authorization': `Bearer ${token}`

@@ -17,7 +17,7 @@ const ConsultasPendentes = () => {
     setLoading(true)
     async function buscarConsultas(){
       try{
-        const consultas = await fetch('http://localhost:3000/consultas',{
+        const consultas = await fetch('https://apiclinica-brvy.onrender.com/consultas',{
           method: 'GET',
           headers:{
             'Authorization': `Bearer ${token}`,

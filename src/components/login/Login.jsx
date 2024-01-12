@@ -16,7 +16,7 @@ const Login = ({isOpen,onClose}) => {
       btnRef.current.style.opacity = '0.5';
     }
     try {
-      const login = await fetch('http://localhost:3000/login', {
+      const login = await fetch('https://apiclinica-brvy.onrender.com/login', {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json'

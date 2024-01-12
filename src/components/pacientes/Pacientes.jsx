@@ -19,7 +19,7 @@ const Pacientes = () => {
     async function buscarPacientes(){
       setLoading(true);
       try {
-        const pacientes = await fetch('http://localhost:3000/pacientes',{
+        const pacientes = await fetch('https://apiclinica-brvy.onrender.com/pacientes',{
         method: 'GET',
         headers:{
           'Authorization': `Bearer: ${token}`,

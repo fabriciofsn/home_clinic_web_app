@@ -21,7 +21,7 @@ const Medicos = () => {
     async function buscarMedicos(){
       setLoading(true);
       try {
-        const medicos = await fetch('http://localhost:3000/medicos', {
+        const medicos = await fetch('https://apiclinica-brvy.onrender.com/medicos', {
           method: 'GET',
           headers:{
             'Authorization': `Bearer ${token}`,

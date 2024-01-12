@@ -50,7 +50,7 @@ const CadastrarPaciente = () => {
     setLoad(true);
     
     try{
-      const cadastro = await axios.post('http://localhost:3000/cadastrar/paciente',formulario,{
+      const cadastro = await axios.post('https://apiclinica-brvy.onrender.com/cadastrar/paciente',formulario,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

@@ -53,7 +53,7 @@ const AtualizarMedico = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.put(`http://localhost:3000/medico/atualizar/${id}`,formulario,{
+      await axios.put(`https://apiclinica-brvy.onrender.com/medico/atualizar/${id}`,formulario,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ const AtualizarMedico = () => {
     async function medicoRecuperado(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/medico/${id}`,{
+      let res = await axios.get(`https://apiclinica-brvy.onrender.com/medico/${id}`,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

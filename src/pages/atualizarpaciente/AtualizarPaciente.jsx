@@ -51,7 +51,7 @@ const CadastrarPaciente = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.put(`http://localhost:3000/paciente/atualizar/${id}`,formulario,{
+      await axios.put(`https://apiclinica-brvy.onrender.com/atualizar/${id}`,formulario,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ const CadastrarPaciente = () => {
     async function recuperarPaciente(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/paciente/${id}`,{
+      let res = await axios.get(`https://apiclinica-brvy.onrender.com/paciente/${id}`,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

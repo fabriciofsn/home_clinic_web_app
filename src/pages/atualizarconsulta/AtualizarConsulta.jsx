@@ -37,7 +37,7 @@ const AtualizarConsulta = () => {
     e.preventDefault();
     setLoad(true);
     try{
-      await axios.put(`http://localhost:3000/consulta/${id}`,formulario,{
+      await axios.put(`https://apiclinica-brvy.onrender.com/consulta/${id}`,formulario,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const AtualizarConsulta = () => {
   useEffect(() =>{
     async function carregarMedicos(){
       try {
-        const medicos = await axios.get('http://localhost:3000/medicos',{
+        const medicos = await axios.get('https://apiclinica-brvy.onrender.com/medicos',{
           headers:{
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ const AtualizarConsulta = () => {
     async function consultaRecuperada(){
       setLoad(true);
       try{
-      let res = await axios.get(`http://localhost:3000/consulta/${id}`,{
+      let res = await axios.get(`hhttps://apiclinica-brvy.onrender.com/consulta/${id}`,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

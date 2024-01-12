@@ -13,7 +13,7 @@ const DeletarConsulta = () => {
     const deletarConsulta = async () => {
       if (confirme) {
         try {
-          await axios.get(`http://localhost:3000/consulta/deletar/${id}`, {
+          await axios.get(`https://apiclinica-brvy.onrender.com/consulta/deletar/${id}`, {
             headers:{
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'

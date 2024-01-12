@@ -35,7 +35,7 @@ const AgendarConsulta = () => {
     e.preventDefault();
     setLoad(true);
     try{
-        const salvar = await axios.post('http://localhost:3000/agendar/consulta',formulario,{
+        const salvar = await axios.post('https://apiclinica-brvy.onrender.com/agendar/consulta',formulario,{
         headers:{
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ const AgendarConsulta = () => {
     async function buscarMedicos(){
       setLoad(true);
       try{
-      let res = await fetch(`http://localhost:3000/medicos`,{
+      let res = await fetch(`https://apiclinica-brvy.onrender.com/medicos`,{
         method: 'GET',
         headers:{
           'Authorization': `Bearer ${token}`,
@@ -121,7 +121,7 @@ const AgendarConsulta = () => {
     async function buscarPacientes(){
       setLoad(true);
       try{
-      let res = await fetch(`http://localhost:3000/pacientes`,{
+      let res = await fetch(`https://apiclinica-brvy.onrender.com/pacientes`,{
         method: 'GET',
         headers:{
           'Authorization': `Bearer ${token}`,

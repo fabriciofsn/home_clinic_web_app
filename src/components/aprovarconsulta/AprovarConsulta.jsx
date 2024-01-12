@@ -25,7 +25,7 @@ const AprovarConsulta = () => {
       if(confirme){
       
       try{
-        const consulta = await axios.get(`http://localhost:3000/consulta/${id}`,{
+        const consulta = await axios.get(`https://apiclinica-brvy.onrender.com/consulta/${id}`,{
           headers:{
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const AprovarConsulta = () => {
     if (formulario.id) {
       const updateConsulta = async () => {
         try {
-          const update = await axios.put(`http://localhost:3000/consulta/${id}`, formulario,{
+          const update = await axios.put(`https://apiclinica-brvy.onrender.com/consulta/${id}`, formulario,{
           headers:{
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
