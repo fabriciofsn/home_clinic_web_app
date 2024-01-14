@@ -14,3 +14,8 @@ O frontend se conecta a um backend desenvolvido em TypeScript, MongoDB e nodemon
 [Clinica Project Backend.] (https://github.com/fabriciofsn/clinica-project)https://github.com/fabriciofsn/clinica-project <br />
 <br />
 Certifique-se de atualizar o arquivo .env no diretório raiz do frontend com o endereço correto da API.
+
+## O APP ESTÁ RODANDO NESTE LINK -> https://home-clinic-web-app.vercel.app/ <br />
+## PARA LOGAR USE: <br />
+## EMAIL: email@email.com
+## SENHA: 123456
