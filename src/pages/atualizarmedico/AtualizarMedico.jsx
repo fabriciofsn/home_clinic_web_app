@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Heart from '../../assets/Heart.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Toast from '../../components/toast/Toast';
 
 const AtualizarMedico = () => {
   const navigator = useNavigate();
@@ -59,25 +60,16 @@ const AtualizarMedico = () => {
           'Content-Type': 'application/json'
         }
       });
-       toast.success('Médico Atualizado, Você Será Redirecionado à Página de Médicos',{
-        position: "top-left",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      })
+      <Toast tipo="success" mensagem="Medico Atualizado Com Sucesso!"/>
       setTimeout(() =>{
         navigator('/medicos'); 
       },2000)
   }catch(e){
     if(e.status === 401){
-      alert(`Você precisar estar autenticado`);
+      <Toast tipo="error" mensagem="Você Precisa Estar Autenticado!"/>
       navigator('/');
     }else{
-      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+      <Toast tipo="error" mensagem="Ocorreu um erro ao atualizar médico"/>
     }
   }finally{
     setLoad(false);
@@ -111,10 +103,10 @@ const AtualizarMedico = () => {
       })
     }catch(e){
       if(e.status === 401){
-      alert(`Você precisar estar autenticado`);
+      <Toast tipo="error" mensagem="Você Precisa Estar Autenticado!"/>
       navigator('/');
     }else{
-      alert(`Ocorreu um erro ao atualizar paciente ${e}`);
+      <Toast tipo="error" mensagem="Ocorreu um erro ao atualizar médico"/>
     }
     }finally{
       setLoad(false);
